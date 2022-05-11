@@ -21,6 +21,16 @@ class ViewController: UIViewController {
         userNameValue.layer.cornerRadius = 15
         passwordValue.layer.cornerRadius = 15
         
+        userNameValue.delegate = self
+        passwordValue.delegate = self
+        
+        userNameValue.returnKeyType = UIReturnKeyType.next
+        passwordValue.returnKeyType = UIReturnKeyType.done
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -78,6 +88,10 @@ extension ViewController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
-    
 }
 
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        passwordValue.becomeFirstResponder()
+    }
+}
