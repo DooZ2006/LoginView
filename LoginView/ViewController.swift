@@ -18,6 +18,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        userNameValue.layer.cornerRadius = 15
+        passwordValue.layer.cornerRadius = 15
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
