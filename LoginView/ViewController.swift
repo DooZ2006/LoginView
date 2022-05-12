@@ -31,33 +31,23 @@ class ViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
-        welcomeVC.welcomeText = "Welcome, \(userName)!"
-    }
-    
-    @IBAction func getingUserName() {
-        if userNameValue.text == userName {
-            userNameValue.text = userName
-        } else {
-            showAlert(with: "", and: "Wrong User Name")
-        }
-    }
-    
-    @IBAction func getingPassword() {
-        if passwordValue.text == password {
-            passwordValue.text = password
-        } else {
-            passwordValue.text = ""
-            showAlert(with: "", and: "Wrong Password")
-        }
+        welcomeVC.welcomeText = userName
     }
     
     @IBAction func logInToTheSystem() {
-        getingUserName()
-        getingPassword()
+        if userNameValue.text == userName {
+            userNameValue.text = userName
+        } else if passwordValue.text == password {
+            passwordValue.text = password
+        } else {
+            passwordValue.text = ""
+            showAlert(with: "", and: "Wrong User Name or Password")
+        }
     }
     
     @IBAction func forgotUserName() {
